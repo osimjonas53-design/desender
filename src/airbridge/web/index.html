@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AirBridge</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><span class="logo" aria-hidden="true"></span>AirBridge</div>
+    <div class="device" id="device">Connecting…</div>
+  </header>
+
+  <main>
+    <div id="banner" class="banner" role="alert" hidden></div>
+
+    <section class="card pairing" aria-labelledby="pair-title">
+      <h2 id="pair-title">Pair a device</h2>
+      <p class="muted">Enter this code on the sending device. It works once and expires after five minutes.</p>
+      <div class="code" id="code" aria-live="polite">——  ——</div>
+      <div class="row">
+        <span class="muted" id="code-timer"></span>
+        <button id="new-code" class="btn ghost" type="button">New code</button>
+      </div>
+      <p class="muted small">Sender address: <code id="address">—</code></p>
+    </section>
+
+    <section class="card qr-card" aria-labelledby="qr-title">
+      <h2 id="qr-title">Scan with a phone</h2>
+      <div class="qr-frame">
+        <img id="qr" alt="QR code that opens the sender page with this pairing code" width="200" height="200" hidden>
+        <p class="empty" id="qr-empty">Create a code to show a QR code.</p>
+      </div>
+      <p class="muted small">Scanning opens the browser sender with the code and fingerprint already filled in. Check that your browser's certificate fingerprint starts with the one below.</p>
+      <p class="small">Fingerprint: <code id="fingerprint">—</code></p>
+    </section>
+
+    <section class="card" aria-labelledby="pending-title">
+      <h2 id="pending-title">Incoming requests <span class="count" id="pending-count" hidden>0</span></h2>
+      <ul class="list" id="pending"></ul>
+      <p class="empty" id="pending-empty">Nothing waiting for approval.</p>
+    </section>
+
+    <section class="card" aria-labelledby="active-title">
+      <h2 id="active-title">Transfers in progress</h2>
+      <ul class="list" id="active"></ul>
+      <p class="empty" id="active-empty">No active transfers.</p>
+    </section>
+
+    <section class="card" aria-labelledby="devices-title">
+      <h2 id="devices-title">Paired devices</h2>
+      <ul class="list" id="devices"></ul>
+      <p class="empty" id="devices-empty">No paired devices. Pairing creates a session that lasts eight hours.</p>
+    </section>
+
+    <section class="card" aria-labelledby="history-title">
+      <h2 id="history-title">Recent activity</h2>
+      <ul class="list" id="history"></ul>
+      <p class="empty" id="history-empty">No activity yet.</p>
+    </section>
+
+    <section class="card subtle">
+      <h2>Save folder</h2>
+      <p><code id="save-dir">—</code></p>
+      <p class="muted small">Files are checked with SHA-256 before they appear here. Nothing runs automatically.</p>
+    </section>
+  </main>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

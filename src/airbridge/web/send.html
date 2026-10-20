@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AirBridge — send files</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><span class="logo" aria-hidden="true"></span>AirBridge</div>
+    <div class="device" id="session-state">Not paired</div>
+  </header>
+
+  <main class="sender-main">
+    <div id="banner" class="banner" role="alert" hidden></div>
+
+    <section class="card" id="connect-card" aria-labelledby="connect-title">
+      <h2 id="connect-title">1. Connect to the receiver</h2>
+      <div class="field">
+        <label for="address">Receiver address</label>
+        <input id="address" type="text" readonly>
+      </div>
+      <div class="field">
+        <label for="code">Pairing code</label>
+        <input id="code" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="6" placeholder="6 digits">
+      </div>
+      <div class="field">
+        <label for="fingerprint">Receiver fingerprint</label>
+        <input id="fingerprint" type="text" autocomplete="off" spellcheck="false" placeholder="16 characters from the receiver screen">
+      </div>
+      <div class="field">
+        <p class="muted small">
+          This browser cannot pin the receiver's certificate the way the desktop
+          sender does. Before you pair, open your browser's certificate details
+          for this page and check that its <strong class="nowrap">SHA-256 fingerprint</strong>
+          starts with the fingerprint shown on the receiver.
+        </p>
+        <label class="check">
+          <input id="verified" type="checkbox"> <span>I checked that the fingerprints match</span>
+        </label>
+      </div>
+      <div class="actions">
+        <button id="pair" class="btn primary" type="button" disabled>Pair</button>
+      </div>
+    </section>
+
+    <section class="card" id="send-card" aria-labelledby="send-title" hidden>
+      <h2 id="send-title">2. Choose files</h2>
+      <div class="drop">
+        <label class="btn ghost" for="files">Choose files</label>
+        <input id="files" type="file" multiple hidden>
+        <p class="muted small">Files are checked with SHA-256 before they are sent. The receiver must approve each one.</p>
+      </div>
+      <ul class="list" id="selected"></ul>
+      <div class="actions">
+        <button id="send" class="btn primary" type="button" disabled>Send</button>
+      </div>
+    </section>
+
+    <section class="card" id="progress-card" aria-labelledby="progress-title" hidden>
+      <h2 id="progress-title">Progress</h2>
+      <ul class="list" id="progress"></ul>
+    </section>
+  </main>
+
+  <script src="/static/sha256.js"></script>
+  <script src="/static/send.js"></script>
+</body>
+</html>
